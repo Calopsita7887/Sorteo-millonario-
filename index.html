@@ -209,7 +209,7 @@
             </tr>
             <tr class="fila-rosa">
                 <td>Marta_17</td>
-                <td>7543, 7553, 7567, 7545, 7552, 7559, 7566, 7574, 7579, 7585, 7588, 7591, 7593, 7583, 7598, 7599, 7603, 7604, 7608, 7609</td>
+                <td>7543, 7553, 7567, 7545, 7552, 7559, 7566, 7574, 7579, 7585, 7588, 7591, 7593, 7583, 7598, 7599, 7603, 7604, 7608, 7609, 9192, 9197, 9203, 9209, 9214, 9219</td>
                 <td>Sí</td>
                 <td>-</td>
             </tr>
@@ -219,22 +219,43 @@
                 <td>Sí</td>
                 <td class="special">Marta_17</td>
             </tr>
-            <!-- Aquí agregamos a Mateo_ga -->
             <tr class="fila-celeste">
                 <td>Mateo_ga</td>
-                <td>6429</td>
+                <td>6429, 9188, 9195</td>
                 <td>Sí</td>
                 <td>-</td>
             </tr>
-             <tr class="fila-verde">
+            <tr class="fila-verde">
                 <td>Cristian_74</td>
-                <td>7549</td>
+                <td>7549, 9189, 9198</td>
+                <td>Sí</td>
+                <td>-</td>
+            </tr>
+            <tr class="fila-lila">
+                <td>Luly_ga</td>
+                <td>9190, 9207</td>
                 <td>Sí</td>
                 <td>-</td>
             </tr>
         </tbody>
     </table>
 
-    <script src="script.js"></script>
+    <script>
+        // Función para filtrar la tabla
+        function filtrarTabla() {
+            const input = document.getElementById('buscador').value.toUpperCase();
+            const filas = document.querySelectorAll('#tabla-sorteo tbody tr');
+
+            filas.forEach(fila => {
+                const nombre = fila.getElementsByTagName('td')[0].textContent.toUpperCase();
+                const numeros = fila.getElementsByTagName('td')[1].textContent.toUpperCase();
+                if (nombre.includes(input) || numeros.includes(input)) {
+                    fila.classList.remove('hidden');
+                } else {
+                    fila.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
