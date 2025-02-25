@@ -1,4 +1,3 @@
-<script>
 function filtrarTabla() {
     let filtro = document.getElementById("buscador").value.toLowerCase();
     let filas = document.querySelectorAll("#tabla-sorteo tbody tr");
@@ -8,9 +7,9 @@ function filtrarTabla() {
         let numeros = fila.cells[1]?.textContent.toLowerCase() || "";
 
         if (nombre.includes(filtro) || numeros.includes(filtro)) {
-            fila.style.display = ""; // Mostrar fila
+            fila.style.display = "";
         } else {
-            fila.style.display = "none"; // Ocultar fila
+            fila.style.display = "none";
         }
     });
 }
@@ -26,17 +25,27 @@ function agregarUsuario() {
         return;
     }
 
-    let tabla = document.getElementById("tabla-sorteo").getElementsByTagName('tbody')[0];
-    let fila = tabla.insertRow();
-    
-    fila.insertCell(0).textContent = nombre;
-    fila.insertCell(1).textContent = numeros;
-    fila.insertCell(2).textContent = cargado;
-    fila.insertCell(3).textContent = recomendado;
+    let tabla = document.querySelector("#tabla-sorteo tbody");
+    let fila = document.createElement("tr");
 
-    // Limpiar campos
+    // Alternar clases de color
+    let colores = ["fila-rosa", "fila-lila", "fila-celeste", "fila-verde", "fila-naranja"];
+    let filas = tabla.querySelectorAll("tr");
+    let colorClase = colores[filas.length % colores.length];
+    fila.classList.add(colorClase);
+
+    // Insertar celdas con la información
+    fila.innerHTML = `
+        <td>${nombre}</td>
+        <td>${numeros}</td>
+        <td>${cargado}</td>
+        <td>${recomendado}</td>
+    `;
+
+    tabla.appendChild(fila);
+
+    // Limpiar campos del formulario
     document.getElementById("nombre").value = "";
     document.getElementById("numeros").value = "";
     document.getElementById("recomendado").value = "";
 }
-</script>
